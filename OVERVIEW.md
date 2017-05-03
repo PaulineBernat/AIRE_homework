@@ -16,10 +16,10 @@ I noticed two important issues that I could quickly fix manually. </br>
   * First the redundancy of words in the top 70. For instance assistant and asst.</br> 
   * Second the problem of priority. Manager assistant was the immediate spot. I only changed this one.
 <br/>
-<i>N.B</i>: I saw a lot of jobs in the top 70 that don't seem sensible (For instance lead, data). </br>
+<i>N.B<i/>: I saw a lot of jobs in the top 70 that don't seem sensible (For instance lead, data). </br>
 The job title needs to be refined. Title with acronym, derive and misspel needs to be treated.</br>
 Ngram are to be used. There is statistics to do so and a tangible difference to expect (analyst vs financial analyst; account manager vs store manager)</br>
-<br/>
+<b>Currently flagging ~3-4% of applications in aire.stream.data</b> <br/>
 
 
 <b>2.- New Geographic Area</b><br/>
@@ -29,7 +29,7 @@ I looked at zip codes online but having only three digits and the state in the d
 I flag application from a new geographic area when a new zip is hit for a specific job.<br/>
 I used the median of the annual income for a particular job computed in a state. <br/>
 I need to investigate the annual income distribution itself, consider tranches, and problably use its log value for normality. <br/>
-
+<b>Currently flagging ~7-8% of applications in aire.stream.data</b><br/>
 
 <b>3.- Run the code</b><br/>
 a.- run the script CommonFile.R. <i>Will load libraries, functions (operations, visualisation) common to both EVENTS </i> <br/>
