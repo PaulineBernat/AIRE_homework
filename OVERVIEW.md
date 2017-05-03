@@ -16,7 +16,7 @@ I noticed two important issues that I could quickly fix manually. </br>
   * First the redundancy of words in the top 70. For instance assistant and asst.</br> 
   * Second the problem of priority. Manager assistant was the immediate spot. I only changed this one.
 <br/>
-<i>N.B<i/>: I saw a lot of jobs in the top 70 that don't seem sensible (For instance lead, data). </br>
+N.B: I saw a lot of jobs in the top 70 that don't seem sensible (For instance lead, data). </br>
 The job title needs to be refined. Title with acronym, derive and misspel needs to be treated.</br>
 Ngram are to be used. There is statistics to do so and a tangible difference to expect (analyst vs financial analyst; account manager vs store manager)</br>
 <b>Currently flagging ~3-4% of applications in aire.stream.data</b> </br>
@@ -24,11 +24,11 @@ Ngram are to be used. There is statistics to do so and a tangible difference to 
 
 
 <b>2.- New Geographic Area</b><br/>
-For the new geographic area, I decided to explore zip as I though that some state may have particular area not yet active. <br/>
-And therefore could be interesting for marketing or for flagging potential risk feature. <br/>
+For the new geographic area, I decided to explore zip as I thought that some state may have particular area not yet active. <br/>
+And therefore could be interesting for marketing purposes or for flagging potential risk feature. <br/>
 I looked at zip codes online but having only three digits and the state in the data limits the potential of these.<br/>
-I flag application from a new geographic area when a new zip is hit for a specific job.<br/>
-I used the median of the annual income for a particular job computed in a state. <br/>
+I flagged applications from a new geographic area when a new zip is hit for a specific job.<br/>
+If available the median of the annual income for a particular job computed in the state is given. <br/>
 I need to investigate the annual income distribution itself, consider tranches, and problably use its log value for normality. <br/>
 <b>Currently flagging ~7-8% of applications in aire.stream.data</b><br/>
 
