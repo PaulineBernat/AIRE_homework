@@ -34,8 +34,8 @@ I need to investigate the annual income distribution itself, consider tranches, 
 
 <b>3.- Run the code</b><br/>
 a.- run the script CommonFile.R. <i>Will load libraries, functions (operations, visualisation) common to both EVENTS </i> <br/>
-b.- run the script EXAG_INCOME.R. <i>Will look at all application and flag those with exaggerated income for a given set (zip, job).</i> <br/>
-c.- run the script NEW_GEO_AREA.R. <i>Will look at new application in set (zip, job), flag them and show average income in State.</i> <br/>
+b.- run the script EXAG_INCOME.R. <i>Will look at all applications and flag those with exaggerated income for a given set (zip, job).</i> <br/>
+c.- run the script NEW_GEO_AREA.R. <i>Will look at new application in set (zip, job), flag them and show average income in the corresponding state.</i> <br/>
 
 
 
