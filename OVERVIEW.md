@@ -1,41 +1,40 @@
-* prerequisite to run your code <br/>
+<b>Prerequisite</b> 
 Have R installed (I used R studio Version 1.0.136 for Mac)<br/>
 Install the libraries in the lib2load.R file <br/>
-<br/>
 
-<b>1.- Exaggerated Income</b><br/>
-I choose to look at exaggerated income per type of job and per zip/state area. </br>
-I used zip area as it was more refined than state. For each 3-digit zip code and job title I used the median and the sigma to define my threshod:</br>
-threshold <- med_salary+(2*sd_salary)</br>
-I only considered pair (zip, job) with 20 entries of more. </br>
-To extract the job title, I first separated each word of 4 letters or more in each emp_title.</br>
-I ordered then by decreasing frequency of appearance. And considered only the first 70 words, with at least 0.1% of the population. </br>
-I should extend that but there is too many flaws to improve first.</br>
+<b>Exaggerated Income</b>
+
+Exaggerated income suggests misleading information in the application and should be considered as a risk of fraud and source of mistrust from lenders. <br/>
+To flag exaggerated income, I considered groups of applications based on spatial (zip code and state) and economic (annual income, employment title) information. <br/>
+I assumed that the annual income was strongly correlated to the employment of the borrower and that the average income per type of job would vary among state. <br/>
+It seemed sensible to look at zip code rather than the state with the available amount of data, although I haven’t look at the actual gain of using a refined spatial area. <br/>
+To extract the job title, I used a simple method extracting the most frequent word in each employment title. This method has major flaws: misspell, derivate and acronym are ignored, lots of employment should at least be bi-grams (“financial analyst”, “sale manager”). But it showed encouraging distinction in annual income median per job title. <br/>
+For each pair of (job, zip) I decided to use the median of the annual income and the standard deviation to define a threshold (2*sd), above which the income should be considered as likely to be exaggerated. I checked the sd, skewness and kurtosis and found that the log of the annual income per area was more normal than the annual income distribution. This should be considered when defining the threshold. <br/>
 <br/>
+To extract the job title (one word only), I first separated each word of 4 letters or more in each emp_title.</br>
+I ordered then by decreasing frequency of appearance. And considered only the first 70 words, representing at least 0.1% of the population. </br>
 I noticed two important issues that I could quickly fix manually. </br>
-  * First the redundancy of words in the top 70. For instance assistant and asst.</br> 
-  * Second the problem of priority. Manager assistant was the immediate spot. I only changed this one.
+  * First the redundancy of words in the top 70. For instance, assistant and asst.</br> 
+  * Second the problem of priority. “assistant” was the immediate spot. I only changed this one. 
 <br/>
-N.B: I saw a lot of jobs in the top 70 that don't seem sensible (For instance lead, data). </br>
-The job title needs to be refined. Title with acronym, derive and misspel needs to be treated.</br>
-Ngram are to be used. There is statistics to do so and a tangible difference to expect (analyst vs financial analyst; account manager vs store manager)</br>
-<b>Currently flagging ~3-4% of applications in aire.stream.data</b> </br>
-</br>
+This method proved very limiting, giving job titles in the top 70 that aren’t sensible (lead, data) or are too simplistic (manager) and most importantly failing to find a job title for about a third of the application with a emp_title.
+<b>Currently it flags ~3-4% of applications in the stream.</b> </br>
+Refining the text mining approach on the job title is a key step in this task. Studying the annual income properties (and correlation with other variables) will help refine the threshold for flagging exaggerated income. </br>
 
 
-<b>2.- New Geographic Area</b><br/>
-For the new geographic area, I decided to explore zip as I thought that some state may have particular area not yet active. <br/>
-And therefore could be interesting for marketing purposes or for flagging potential risk feature. <br/>
-I looked at zip codes online but having only three digits and the state in the data limits the potential of these.<br/>
-I flagged applications from a new geographic area when a new zip is hit for a specific job.<br/>
-If available the median of the annual income for a particular job computed in the state is given. <br/>
-I need to investigate the annual income distribution itself, consider tranches, and problably use its log value for normality. <br/>
+<b>New Geographic Area</b><br/>
+
+Finding new geographic area can be useful for tracking unusual application or close duplicates, both presenting risks of fraud.<br/>
+In the case of new application, comparing the annual income to the median in the state can provide a loose cut for potential fraud. 
+ <br/>
+I looked at application in the stream that had a zip code and a job title with no entry in the training data. 
 <b>Currently flagging ~7-8% of applications in aire.stream.data</b><br/>
+The next task, aside refining the current definitions of job title and spatial area, would be to take the estimated age of the borrower into account (for instance using the emp_length, the verification_status, the number of accounts). <br/>
+
 
 <b>3.- Run the code</b><br/>
 a.- run the script CommonFile.R. <i>Will load libraries, functions (operations, visualisation) common to both EVENTS </i> <br/>
 b.- run the script EXAG_INCOME.R. <i>Will look at all applications and flag those with exaggerated income for a given set (zip, job).</i> <br/>
 c.- run the script NEW_GEO_AREA.R. <i>Will look at new application in set (zip, job), flag them and show average income in the corresponding state.</i> <br/>
-
 
 
