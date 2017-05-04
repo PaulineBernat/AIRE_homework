@@ -16,7 +16,7 @@ To extract the job title (one word only), I first separated each word of 4 lette
 I ordered then by decreasing frequency of appearance. And considered only the first 70 words, representing at least 0.1% of the population. </br>
 I noticed two important issues that I could quickly fix manually. </br>
   * First the redundancy of words in the top 70. For instance, assistant and asst.</br> 
-  * Second the problem of priority. “assistant” was the immediate spot. I only changed this one. 
+  * Second the problem of priority. “assistant” was the immediate spot. I only changed this one. <br/>
 This method proved very limiting, giving job titles in the top 70 that aren’t sensible (lead, data) or are too simplistic (manager) and most importantly failing to find a job title for about a third of the application with a emp_title.<br/>
 <b>Currently it flags ~3-4% of applications in the stream.</b> </br>
 Refining the text mining approach on the job title is a key step in this task. Studying the annual income properties (and correlation with other variables) will help refine the threshold for flagging exaggerated income. </br>
